@@ -1,42 +1,30 @@
-<!-- <php
-@session_start();
 
-if (!isset($_SESSION['login'])) header('Location: login.php');
-
-include_once '../util/conexao.php';
-include_once '../daos/Registro.php';
-include_once '../util/funcoes.php';
-> -->
 @extends('layouts.main')
 
 @section('content')
-<div class="conteudo-regs">
+@if (count($regs) !== 0)
+  @foreach ($regs as $reg)
+  <a href="{{route('registro.show', $reg->id)}}" class='reg-cell-anchor'>
+        <div class='reg-cell'>
+            <div class='reg-cell-cor' style='background-color: {{ $reg->cor }}'></div>
+            <div class='reg-cell-bg'>
+                <div class='reg-cell-text' id='reg-cell-titulo'>
+                    <span>{{ $reg->titulo }}</span>
+                </div>
+                <div class='reg-cell-text' id='reg-cell-pensamento'>
+                    <span>“{{ $reg->frase_do_dia }}...”</span>
+                </div>
+            </div>
+        </div>
+    </a>
+  @endforeach
+  @else
+  <div class="conteudo-regs">
   <div class="nenhum-container">
     <span id="nenhum">Nenhum registro</span>
   </div>
-  <!-- <php
-        if (!empty($_GET['value'])) {
+  @endif
 
-          $value = $_GET['value'];
-
-          $result = DataObjects\Registro::getRegistroById($value);
-
-          echo regContainer($result);
-        } else {
-          $result = DataObjects\Registro::getAllRegistros($_SESSION['login_id']);
-
-          if (count($result) <= 0) {
-            echo '<div class="nenhum-container">
-              <span id="nenhum">Nenhum registro</span>
-            </div>';
-            exit;
-          }
-
-          foreach ($result as $row) {
-            echo regCell($row);
-          }
-        }
-        > -->
 </div>
 @endsection
 

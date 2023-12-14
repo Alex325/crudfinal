@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registro as ModelsRegistro;
 use App\Models\Usuario;
+use DateTime;
 use Illuminate\Http\Request;
 
 class Registro extends Controller
@@ -13,7 +14,8 @@ class Registro extends Controller
    */
   public function index()
   {
-    return view('registro.index');
+    $regs = ModelsRegistro::all();
+    return view('registro.index', ['regs' => $regs]);
   }
 
   /**
@@ -29,8 +31,6 @@ class Registro extends Controller
    */
   public function store(Request $request)
   {
-    $user = Usuario::find('9ad8429e-e8a8-464f-91bd-e58d4612abed');
-
     $data = $request->all();
 
     $registro = new ModelsRegistro([
@@ -40,7 +40,7 @@ class Registro extends Controller
       'cor' => $data['cor'],
     ]);
 
-    $user->registros()->save($registro);
+    $registro->save();
 
     return redirect(route('registro.index'));
   }
@@ -50,7 +50,12 @@ class Registro extends Controller
    */
   public function show(string $id)
   {
-    return view('registro.show');
+    $reg = ModelsRegistro::find($id);
+    $dataFormatada = (new DateTime($reg->data))->format("d/m/Y à\s H:i:s");
+    return view('registro.show', [
+      'reg' => $reg,
+      'dataFormatada' => $dataFormatada
+    ]);
   }
 
   /**
@@ -58,7 +63,11 @@ class Registro extends Controller
    */
   public function edit(string $id)
   {
-    //
+
+    $reg = ModelsRegistro::find($id);
+    return view('registro.edit', [
+      'reg' => $reg
+    ]);
   }
 
   /**
@@ -66,14 +75,31 @@ class Registro extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $data = $request->all();
+
+    $reg = ModelsRegistro::find($id);
+    $reg->titulo = $data['titulo'];
+    $reg->frase_do_dia = $data['frase'];
+    $reg->cor = $data['cor'];
+
+    $reg->save();
+
+    return redirect(route('registro.index'));
+    
+
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
+  public function delete(string $id)
+  {
+    $reg = ModelsRegistro::find($id);
+    return view('registro.delete', [
+      'reg' => $reg
+    ]);
+  }
+
   public function destroy(string $id)
   {
-    //
+    ModelsRegistro::destroy($id);
+    return redirect(route('registro.index'));
   }
 }

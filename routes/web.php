@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+  return view('index');
 })->name('index');
 
 Route::resource('/registro', Registro::class);
 Route::resource('/fotografia', Fotografia::class);
 
-Route::get('/pesquisar', function () {
-  return view('pesquisar');
-})->name('pesquisar');
+
+Route::get('/fotografia/{fotografium}/delete', [Fotografia::class, 'delete'])->name('fotografia.delete');
+Route::get('/registro/{reg}/delete', [Registro::class, 'delete'])->name('registro.delete');
+

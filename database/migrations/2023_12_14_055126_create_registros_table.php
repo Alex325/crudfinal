@@ -18,8 +18,6 @@ return new class extends Migration
       $table->string('frase_do_dia', 100)->nullable(false);
       $table->char('cor', 7);
       $table->dateTime('data')->useCurrent()->nullable(false);
-      $table->char('id_usuario', 36)->nullable(false);
-      $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade')->onUpdate('cascade');
       $table->timestamps();
     });
   }

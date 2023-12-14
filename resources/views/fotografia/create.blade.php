@@ -1,62 +1,3 @@
-<!-- <php
-
-@session_start();
-
-if (!isset($_SESSION['login'])) header('Location: login.php');
-
-require_once '../util/conexao.php';
-include_once '../models/Fotografia.php';
-include_once '../daos/Fotografia.php';
-
-if (isset($_POST['enviado'])) {
-
-  $titulo = ucfirst(trim($_POST['titulo']));
-  $legenda = trim($_POST['legenda']);
-  $data = empty($_POST['data']) ? null : $_POST['data'];
-  $idUsuario = $_SESSION['login_id'];
-
-  if (isset($_GET['op'])) {
-    $value = $_GET['value'];
-    switch ($_GET['op']) {
-      case 'alt':
-        $obj = new Models\Fotografia($value, $titulo, null, $legenda, $data);
-        DataObjects\Fotografia::updateFotografia($obj);
-        break;
-
-      case 'exc':
-        $referencia = DataObjects\Fotografia::getReferenciaById($value);
-        unlink($referencia);
-
-        $diretorio = "../images/" . $_SESSION['login_id'];
-
-        $files = scandir($diretorio);
-
-        if ((count($files) - 2) <= 0)
-          rmdir($diretorio);
-
-        DataObjects\Fotografia::deleteFotografia($value);
-        break;
-    }
-  } else {
-
-    $extension = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
-
-    $diretorio = "../images/" . $_SESSION['login_id'] . "/";
-
-    $referencia = $diretorio . (new DateTime('now', (new DateTimeZone('America/Sao_Paulo'))))->format('YmdHis') . ".$extension";
-
-    if (!file_exists($diretorio))
-      mkdir($diretorio);
-
-    $obj = new Models\Fotografia(null, $titulo, $referencia, $legenda, $data, $idUsuario);
-
-    if (move_uploaded_file($_FILES['imagem']['tmp_name'], $referencia))
-      DataObjects\Fotografia::addFotografia($obj);
-  }
-  echo "<script>location.replace('viewFoto.php');</script>";
-}
-?> -->
-
 @extends('layouts.main')
 
 @section('content')
@@ -129,5 +70,5 @@ if (isset($_POST['enviado'])) {
 @endsection
 
 @section('style')
-<link rel="stylesheet" href="../css/addFoto.css">
+<link rel="stylesheet" href="{{ asset('css/addFoto.css') }}">
 @endsection

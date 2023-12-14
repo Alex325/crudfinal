@@ -19,8 +19,4 @@ class Registro extends Model
     'cor'
   ];
 
-  public function usuario(): BelongsTo
-  {
-    return $this->belongsTo(Usuario::class, 'id_usuario');
-  }
 }

@@ -12,38 +12,28 @@ include_once '../util/funcoes.php';
 
 @section('content')
 <div class="conteudo-fotos">
+
+  @if (count($fotos) !== 0)
+  @foreach ($fotos as $foto)
+  <div class="foto-row">
+    <a class="foto-container" href="{{route('fotografia.show', $foto->id)}}">
+      <div class="foto-bg">
+        <span class="foto-titulo">{{ $foto->titulo }}</span>
+        <img class="foto-imagem" src="{{ $foto->referencia }}" alt="a">
+        <span class="foto-legenda">{{ $foto->legenda }}</span>
+      </div>
+    </a>
+  </div>
+  @endforeach
+  @else
   <div class="nenhum-container">
     <span id="nenhum">Nenhuma fotografia</span>
   </div>
-  <!-- <php
-        if (!empty($_GET['value'])) {
+  @endif
 
-          $value = $_GET['value'];
-
-          $result = DataObjects\Fotografia::getFotografiaById($value);
-
-          echo fotoContainer($result);
-        } else {
-
-          $result = DataObjects\Fotografia::getAllFotografias($_SESSION['login_id']);
-
-          if (count($result) > 0) {
-            echo '<div class="foto-row">';
-            foreach ($result as $row) {
-              echo fotoCell($row);
-            }
-            echo '</div>';
-          } else {
-            echo '<div class="nenhum-container">
-            <span id="nenhum">Nenhuma fotografia</span>
-          </div>';;
-          }
-        }
-        ?> -->
 </div>
 @endsection
 
 @section('style')
-<link rel="stylesheet" href="../css/viewFoto.css">
-<link rel="stylesheet" href="../css/clickFoto.css">
+<link rel="stylesheet" href="{{ asset('css/viewFoto.css')}}">
 @endsection

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fotografia as ModelsFotografia;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 class Fotografia extends Controller
@@ -11,7 +14,8 @@ class Fotografia extends Controller
    */
   public function index()
   {
-    return view('fotografia.index');
+    $fotos = ModelsFotografia::all();
+    return view('fotografia.index', ['fotos' => $fotos]);
   }
 
   /**
@@ -27,7 +31,21 @@ class Fotografia extends Controller
    */
   public function store(Request $request)
   {
-    dd($request->all());
+    $data = $request->all();
+
+    $arquivo = file_get_contents($request->file('imagem')->path());
+
+    $base64 = 'data:image/' . $request->file('imagem')->extension() . ';base64,' . base64_encode($arquivo);
+
+    $foto = new ModelsFotografia([
+      'titulo' => $data['titulo'],
+      'referencia' => $base64,
+      'data_da_foto' => $data['data'],
+      'legenda' => $data['legenda'],
+    ]);
+
+    $foto->save();
+    return redirect(route('fotografia.index'));
   }
 
   /**
@@ -35,7 +53,14 @@ class Fotografia extends Controller
    */
   public function show(string $id)
   {
-    //
+    $foto = ModelsFotografia::find($id);
+    $dataFormatada = (new DateTime($foto->data))->format("d/m/Y à\s H:i:s");
+    $tiradaem = !is_null($foto->dataDaFoto) ? (new DateTime($foto->data_da_foto))->format('d/m/Y') : "Desconhecido";
+    return view('fotografia.show', [
+      'foto' => $foto,
+      'data' => $dataFormatada,
+      'tiradaem' => $tiradaem
+    ]);
   }
 
   /**
@@ -43,7 +68,11 @@ class Fotografia extends Controller
    */
   public function edit(string $id)
   {
-    //
+
+    $foto = ModelsFotografia::find($id);
+    return view('fotografia.edit', [
+      'foto' => $foto
+    ]);
   }
 
   /**
@@ -51,14 +80,31 @@ class Fotografia extends Controller
    */
   public function update(Request $request, string $id)
   {
-    //
+    $data = $request->all();
+
+    $foto = ModelsFotografia::find($id);
+    $foto->titulo = $data['titulo'];
+    $foto->legenda = $data['legenda'];
+    $foto->data_da_foto = $data['data'];
+
+    $foto->save();
+
+    return redirect(route('fotografia.index'));
+    
+
   }
 
-  /**
-   * Remove the specified resource from storage.
-   */
+  public function delete(string $id)
+  {
+    $foto = ModelsFotografia::find($id);
+    return view('fotografia.delete', [
+      'foto' => $foto
+    ]);
+  }
+
   public function destroy(string $id)
   {
-    //
+    ModelsFotografia::destroy($id);
+    return redirect(route('fotografia.index'));
   }
 }

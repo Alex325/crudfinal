@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('fotografias', function (Blueprint $table) {
             $table->char('id', 36)->primary();
             $table->string('titulo', 50)->nullable(false);
-            $table->tinyText('referencia')->nullable(false);
+            $table->longText('referencia')->nullable(false);
             $table->string('legenda', 100)->nullable(false);
             $table->dateTime('data')->useCurrent()->nullable(false);
             $table->date('data_da_foto')->default(null);
-            $table->char('id_usuario', 36)->nullable(false);
-            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
