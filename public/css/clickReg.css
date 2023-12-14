@@ -1,0 +1,44 @@
+.conteudo-regs:has(.reg-container) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.reg-container {
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgb(18, 15, 46);
+    align-self: center;
+    padding: 10px;
+}
+
+.reg-titulo, .reg-frase {
+    display: flex;
+    justify-content: center;
+}
+
+.reg-titulo {
+    font-size: 24px;
+}
+
+.reg-frase {
+    font-size: 20px;
+}
+
+.reg-container > div {
+    padding: 5px;
+}
+
+.reg-texto-texto {
+    text-justify: inter-word;
+    line-break: anywhere;
+}
+
+.option-bg {
+    fill: rgb(8, 4, 27);
+}
+
+.option-bg:hover {
+    fill: rgb(10, 9, 29);
+}

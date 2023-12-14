@@ -1,0 +1,70 @@
+:root {
+    --tempo-menu: 0.2s;
+    --menu-width: 55px;
+    --open-menu-color: #030207;
+}
+
+.menu.container {
+    display: inline-grid;
+    grid-template-rows: 55px 100px 55px 55px 55px 55px 55px 55px auto;
+    gap: 3px;
+    transition: var(--tempo-menu);
+    background-color: rgb(3, 4, 9);
+    width: var(--menu-width);
+    height: 100%;
+    position: fixed;
+    color: white;
+
+}
+
+.menu.item {
+    display: grid;
+    grid-template-columns: 55px auto;
+    font-size: 20px;
+    height: 55px;
+    white-space: nowrap;
+}
+
+.menu.item:hover {
+    background-color: #080a14;
+    cursor: pointer;
+}
+
+.menu-grid-content.menu-grid-text {
+    display: none;
+}
+
+.menu-grid-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu.open {
+    display: grid;
+    grid-template-columns: 55px auto;
+    font-size: 20px;
+    height: 55px;
+    white-space: nowrap;
+}
+
+.menu.open svg > g > rect {
+
+    fill: var(--open-menu-color);
+
+}
+
+.menu.open svg:hover {
+    cursor: pointer;
+    --open-menu-color: #080a14;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+
+.principal {
+    transition: margin-left var(--tempo-menu), width var(--tempo-menu);
+    margin-left: var(--menu-width);
+}

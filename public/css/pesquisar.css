@@ -1,0 +1,86 @@
+.input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-family: 'Arial', 'Arial Narrow', Arial, sans-serif;
+    border: solid 1px white;
+    border-radius: 5px;
+    padding: 5px;
+}
+.input:focus {
+    outline: grey 1px solid;
+}
+
+.botao {
+    color: white;
+    background-color: rgb(60, 44, 119);
+    border-radius: 5px;
+    border: solid 1px rgb(50, 27, 68);
+    display: inline-block;
+    font-size: 17px;
+    width: 150px;
+    padding: 5px;
+    transition: background-color 100ms;
+}
+
+.botao:hover {
+    background-color: rgb(50, 34, 109);
+    cursor: pointer;
+}
+
+.pesquisar-form-container {
+    border: solid 1px rgb(25, 20, 43);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pesquisar-form {
+    display: inline-block;
+    height: 100%;
+    width: 500px;
+    font-size: 17px;
+}
+
+.input-container {
+    margin-top: 2px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-container.input-container-texto {
+    height: fit-content;
+
+}
+
+.label {
+    margin-bottom: 3px;
+    display: inline-block;
+}
+
+.conteudo-form {
+    width: 100%;
+    height: 65%;
+}
+
+.registros-encontrados-container, .fotos-encontradas-container {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.fotos-encontradas-container {
+    margin-top: 10px;
+}
+
+.registros-encontrados, .fotos-encontradas {
+    font-size: 20px;
+}
+
+.conteudo-regs {
+    padding: 0;
+    padding-top: 20px;
+}

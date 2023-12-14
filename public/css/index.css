@@ -1,0 +1,24 @@
+.conteudo-texto {
+    text-justify: inter-word;
+    width: 100%;
+    height: 100%;
+}
+
+.titulo {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 24px;
+
+}
+
+#login-link {
+  transition: text-decoration-color 100ms;
+  text-decoration: underline;
+  text-decoration-color: #ffffff00;
+}
+
+#login-link:hover {
+  text-decoration-color: #ffffff;
+}

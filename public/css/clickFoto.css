@@ -1,0 +1,68 @@
+.full-foto {
+    width: 100%;
+    text-justify: inter-word;
+    padding: 10px;
+}
+
+.full-foto-imagem-container {
+    /* padding: 10px; */
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+.full-foto-dados {
+    border-radius: 5px;
+    background-color: rgb(20, 22, 48);
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.full-foto-titulo {
+    width: 100%;
+    font-size: 24px;
+}
+
+.full-foto-legenda {
+    font-size: 18px;
+}
+
+.full-foto-datas {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.full-foto-titulo-container {
+    width: 100%;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
+}
+
+.full-foto-legenda-container {
+    margin-bottom: 10px;
+}
+
+.full-foto-imagem {
+    min-width: 30%;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.option-bg {
+    fill: rgb(8, 4, 27);
+}
+
+.option-bg:hover {
+    fill: rgb(10, 9, 29);
+}
+
+.full-foto-altdel-container {
+    display: flex;
+    justify-content: end;
+}
+
+.full-foto-altdel-container-2 {
+    display: inline-block;
+}

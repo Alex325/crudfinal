@@ -1,0 +1,77 @@
+.conteudo-regs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.reg-cell {
+  display: grid;
+  grid-template-areas:
+    'a b';
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 20px calc(100% - 20px);
+}
+
+.reg-cell-anchor {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 80px;
+}
+
+.reg-cell-cor {
+  grid-area: a;
+  width: 20px;
+  height: 100%;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  display: inline-block;
+}
+
+.reg-cell-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(31, 28, 58);
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  display: inline-grid;
+  grid-template-areas:
+    'c'
+    'd';
+  grid-area: b;
+  transition: 100ms;
+}
+
+.reg-cell-bg:hover {
+  background-color: rgb(21, 18, 48);
+  cursor: pointer;
+}
+
+.reg-cell-text {
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#reg-cell-titulo {
+  grid-area: c;
+}
+
+#reg-cell-pensamento {
+  grid-area: d;
+}
+
+.nenhum-container {
+  display: flex;
+  justify-content: center;
+}
+
+#nenhum {
+  font-size: 20px;
+}
